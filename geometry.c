@@ -1,4 +1,10 @@
 /*
+ * Norma Langdon
+ * Partner: Terrance Whitehead
+ * Lab 12
+ */
+
+/*
  * geometry.c
  * Andy Sayler
  * CSCI 3308
@@ -67,5 +73,35 @@ void coord_2d_midpoint(coord_2d_t* mid, const coord_2d_t* a, const coord_2d_t* b
     /* Maths */
     mid->x = ((a->x + b->x) / 2.0 );
     mid->y = ((a->y + b->y) / 2.0 );
+
+}
+
+
+
+/* Added function */
+double coord_2d_area_triangle(const coord_2d_t* a, const coord_2d_t* b, const coord_2d_t* c){
+
+    /* Input Checks */
+    if(!a){
+        DEBUG(__FILE__, __LINE__, __func__, "'a' must not be NULL");
+        return NAN;
+    }
+    if(!b){
+        DEBUG(__FILE__, __LINE__, __func__, "'b' must not be NULL");
+        return NAN;
+    }
+    if(!c){
+        DEBUG(__FILE__, __LINE__, __func__, "'c' must not be NULL");
+        return NAN;
+    }
+
+    /* Maths */
+    double area;
+    area = ((a->x)*(b->y - c->y) + (b->x)*(c->y - a->y) + (c->x)*(a->y - b->y)) / 2.0;
+    /* abs() function truncates double to int --> cannot use */
+    if(area < 0) {
+        area = area*(-1.0);
+    }
+    return area;
 
 }
